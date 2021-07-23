@@ -1661,3 +1661,122 @@ puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
 puma (4.3.8) lib/puma/server.rb:472:in `process_client'
 puma (4.3.8) lib/puma/server.rb:328:in `block in run'
 puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/users" for ::1 at 2021-07-23 10:14:18 -0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vinicius", "email"=>"viniciusrdefreitas@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vinicius", "email"=>"viniciusrdefreitas@gmail.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 404 Not Found in 7ms (ActiveRecord: 0.6ms | Allocations: 4942)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'={:email=>"viniciusrdefreitas@gmail.com"}):
+  
+app/controllers/users_controller.rb:23:in `create'
+Started POST "/users" for ::1 at 2021-07-23 10:14:43 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vinicius", "email"=>"viniciusrdefreitas2@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vinicius", "email"=>"viniciusrdefreitas2@gmail.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms | Allocations: 954)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'={:email=>"viniciusrdefreitas2@gmail.com"}):
+  
+app/controllers/users_controller.rb:23:in `create'
+Started POST "/users" for ::1 at 2021-07-23 10:15:05 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vinicius", "email"=>"viniciusrdefreitas@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vinicius", "email"=>"viniciusrdefreitas@gmail.com"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 500 Internal Server Error in 12ms (Views: 0.2ms | ActiveRecord: 1.2ms | Allocations: 8534)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2021-07-23 10:15:33 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vinicius", "email"=>"viniciusrdefreitas@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vinicius", "email"=>"viniciusrdefreitas@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Redirected to http://localhost:3000/users?json=%23%3CActiveModel%3A%3AErrors%3A0x00007f7a18440d60%3E
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 1.0ms | Allocations: 7681)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2021-07-23 10:17:45 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vinicius", "email"=>"viniciusrdefreitas@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vinicius", "email"=>"viniciusrdefreitas@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 422 Unprocessable Entity in 11ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 6443)
+
+
+Started POST "/users" for ::1 at 2021-07-23 10:17:53 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vinicius", "email"=>"viniciusrdefreitas2@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vinicius", "email"=>"viniciusrdefreitas2@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "token") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Vinicius"], ["email", "viniciusrdefreitas2@gmail.com"], ["created_at", "2021-07-23 13:17:53.789605"], ["updated_at", "2021-07-23 13:17:53.789605"], ["token", "f6f1d78289530129a9f38513e28a74b3"]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 201 Created in 18ms (Views: 0.6ms | ActiveRecord: 7.6ms | Allocations: 6343)
+
+
+Started POST "/users" for ::1 at 2021-07-23 10:17:58 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vinicius", "email"=>"viniciusrdefreitas2@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vinicius", "email"=>"viniciusrdefreitas2@gmail.com"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 422 Unprocessable Entity in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 3021)
+
+
+Started POST "/users" for ::1 at 2021-07-23 10:18:19 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vinicius", "email"=>"viniciusrdefreitas2@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vinicius", "email"=>"viniciusrdefreitas2@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 400 Bad Request in 9ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 6448)
+
+

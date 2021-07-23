@@ -20,11 +20,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params.to_h.merge!({ token: @token}))
     @user.token = SecureRandom.hex
 
-    if @user.save
+    if @user.save && User.find_by(email: @user.email) 
       session[:user_id] = @user.id
       render json: @user, status: :created, location: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors, status: :bad_request
     end
   end
 
