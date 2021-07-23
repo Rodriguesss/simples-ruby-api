@@ -1,0 +1,1663 @@
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAuthors (20210723020646)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "authors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "author_id" integer, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723020646"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGenres (20210723020715)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "genres" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "genre_id" integer, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723020715"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePublishingCompanies (20210723020739)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "publishing_companies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "puslishing_company_id" integer, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723020739"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBooks (20210723021119)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_id" integer, "pages" integer, "grade" integer, "title" varchar, "read" boolean, "publishing_company_id" integer NOT NULL, "author_id" integer NOT NULL, "genre_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_6c9827a2a6"
+FOREIGN KEY ("publishing_company_id")
+  REFERENCES "publishing_companies" ("id")
+, CONSTRAINT "fk_rails_53d51ce16a"
+FOREIGN KEY ("author_id")
+  REFERENCES "authors" ("id")
+, CONSTRAINT "fk_rails_776de3933f"
+FOREIGN KEY ("genre_id")
+  REFERENCES "genres" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_books_on_publishing_company_id" ON "books" ("publishing_company_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_books_on_author_id" ON "books" ("author_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_books_on_genre_id" ON "books" ("genre_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723021119"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-23 02:32:42.983462"], ["updated_at", "2021-07-23 02:32:42.983462"]]
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2021-07-22 23:36:15 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/vino/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/railties-6.0.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/vino/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/railties-6.0.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 5.9ms | Allocations: 399)
+Completed 200 OK in 19ms (Views: 13.7ms | ActiveRecord: 0.0ms | Allocations: 2200)
+
+
+Started GET "/book" for ::1 at 2021-07-22 23:36:20 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/book"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/books" for ::1 at 2021-07-22 23:36:23 -0300
+Processing by BooksController#index as HTML
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 12ms (Views: 2.8ms | ActiveRecord: 0.7ms | Allocations: 3172)
+
+
+Started GET "/authors" for ::1 at 2021-07-22 23:36:50 -0300
+Processing by AuthorsController#index as HTML
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors"[0m
+  ↳ app/controllers/authors_controller.rb:8:in `index'
+Completed 200 OK in 11ms (Views: 3.5ms | ActiveRecord: 0.9ms | Allocations: 2180)
+
+
+Started POST "/authors" for ::1 at 2021-07-22 23:37:38 -0300
+Processing by AuthorsController#create as */*
+  Parameters: {"name"=>"Vinicius de Morais", "author"=>{"name"=>"Vinicius de Morais"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authors_controller.rb:20:in `create'
+  [1m[36mAuthor Create (0.3ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Vinicius de Morais"], ["created_at", "2021-07-23 02:37:39.001933"], ["updated_at", "2021-07-23 02:37:39.001933"]]
+  ↳ app/controllers/authors_controller.rb:20:in `create'
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authors_controller.rb:20:in `create'
+Completed 201 Created in 15ms (Views: 0.7ms | ActiveRecord: 6.4ms | Allocations: 7398)
+
+
+Started POST "/authors" for ::1 at 2021-07-22 23:38:05 -0300
+Processing by AuthorsController#create as */*
+  Parameters: {"name"=>"Vinicius de Morais 2", "author"=>{"name"=>"Vinicius de Morais 2"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authors_controller.rb:20:in `create'
+  [1m[36mAuthor Create (0.3ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Vinicius de Morais 2"], ["created_at", "2021-07-23 02:38:05.127766"], ["updated_at", "2021-07-23 02:38:05.127766"]]
+  ↳ app/controllers/authors_controller.rb:20:in `create'
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authors_controller.rb:20:in `create'
+Completed 201 Created in 11ms (Views: 0.5ms | ActiveRecord: 5.2ms | Allocations: 4486)
+
+
+Started GET "/authors" for ::1 at 2021-07-22 23:38:53 -0300
+Processing by AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors"[0m
+  ↳ app/controllers/authors_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 1069)
+
+
+Started GET "/authors" for ::1 at 2021-07-22 23:39:08 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors"[0m
+  ↳ app/controllers/authors_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.7ms | Allocations: 3773)
+
+
+Started GET "/authors" for ::1 at 2021-07-22 23:44:35 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (6.0.4) lib/active_record/migration.rb:586:in `check_pending!'
+activerecord (6.0.4) lib/active_record/migration.rb:564:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAuthors (20210723024346)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "authors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAuthors (20210723024346)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "authors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAuthors (20210723024346)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "authors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAuthors (20210723024346)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "authors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723024346"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGenres (20210723024357)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "genres" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723024357"]]
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePublishingCompanies (20210723024412)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "publishing_companies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723024412"]]
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBooks (20210723024424)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "pages" integer, "grade" integer, "title" varchar, "read" boolean, "publishing_company_id" integer NOT NULL, "author_id" integer NOT NULL, "genre_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_6c9827a2a6"
+FOREIGN KEY ("publishing_company_id")
+  REFERENCES "publishing_companies" ("id")
+, CONSTRAINT "fk_rails_53d51ce16a"
+FOREIGN KEY ("author_id")
+  REFERENCES "authors" ("id")
+, CONSTRAINT "fk_rails_776de3933f"
+FOREIGN KEY ("genre_id")
+  REFERENCES "genres" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_books_on_publishing_company_id" ON "books" ("publishing_company_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_books_on_author_id" ON "books" ("author_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_books_on_genre_id" ON "books" ("genre_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723024424"]]
+  [1m[35m (4.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/authors" for ::1 at 2021-07-22 23:46:44 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors"[0m
+  ↳ app/controllers/authors_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.5ms | Allocations: 937)
+
+
+Started POST "/authors" for ::1 at 2021-07-22 23:46:50 -0300
+Processing by AuthorsController#create as */*
+  Parameters: {"name"=>"Vinicius de Morais", "author"=>{"name"=>"Vinicius de Morais"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authors_controller.rb:20:in `create'
+  [1m[36mAuthor Create (0.4ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Vinicius de Morais"], ["created_at", "2021-07-23 02:46:50.169715"], ["updated_at", "2021-07-23 02:46:50.169715"]]
+  ↳ app/controllers/authors_controller.rb:20:in `create'
+  [1m[35m (7.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authors_controller.rb:20:in `create'
+Completed 201 Created in 24ms (Views: 1.5ms | ActiveRecord: 8.5ms | Allocations: 6720)
+
+
+Started GET "/authors" for ::1 at 2021-07-22 23:46:52 -0300
+Processing by AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors"[0m
+  ↳ app/controllers/authors_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.1ms | Allocations: 941)
+
+
+Started POST "/genre" for ::1 at 2021-07-22 23:47:09 -0300
+  
+ActionController::RoutingError (No route matches [POST] "/genre"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/genres" for ::1 at 2021-07-22 23:47:29 -0300
+Processing by GenresController#create as */*
+  Parameters: {"name"=>"Masculino", "genre"=>{"name"=>"Masculino"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/genres_controller.rb:20:in `create'
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Masculino"], ["created_at", "2021-07-23 02:47:29.818052"], ["updated_at", "2021-07-23 02:47:29.818052"]]
+  ↳ app/controllers/genres_controller.rb:20:in `create'
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/genres_controller.rb:20:in `create'
+Completed 201 Created in 23ms (Views: 0.5ms | ActiveRecord: 6.7ms | Allocations: 6337)
+
+
+Started POST "/publishing_companies" for ::1 at 2021-07-22 23:47:56 -0300
+Processing by PublishingCompaniesController#create as */*
+  Parameters: {"name"=>"Brasil", "publishing_company"=>{"name"=>"Brasil"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/publishing_companies_controller.rb:20:in `create'
+  [1m[36mPublishingCompany Create (0.6ms)[0m  [1m[32mINSERT INTO "publishing_companies" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Brasil"], ["created_at", "2021-07-23 02:47:56.912918"], ["updated_at", "2021-07-23 02:47:56.912918"]]
+  ↳ app/controllers/publishing_companies_controller.rb:20:in `create'
+  [1m[35m (7.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/publishing_companies_controller.rb:20:in `create'
+Completed 201 Created in 18ms (Views: 0.6ms | ActiveRecord: 8.8ms | Allocations: 6385)
+
+
+Started POST "/books" for ::1 at 2021-07-22 23:49:50 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company"=>1, "author"=>1, "genre"=>1, "book"=>{"pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true}}
+Completed 422 Unprocessable Entity in 23ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 10268)
+
+
+Started POST "/books" for ::1 at 2021-07-22 23:50:40 -0300
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	"title":"Livro de Poesia",
+	"pages":32,
+	"grade":9,
+	"read":true,
+	"publishing_company":[id:1],
+	"author":1,
+	"genre":1
+}
+Processing by BooksController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 126)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (434: unexpected token at 'id:1],
+	"author":1,
+	"genre":1
+}'):
+  
+app/controllers/books_controller.rb:49:in `book_params'
+app/controllers/books_controller.rb:18:in `create'
+Started POST "/books" for ::1 at 2021-07-22 23:50:49 -0300
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	"title":"Livro de Poesia",
+	"pages":32,
+	"grade":9,
+	"read":true,
+	"publishing_company":["id":1],
+	"author":1,
+	"genre":1
+}
+Processing by BooksController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 125)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (434: unexpected token at ':1],
+	"author":1,
+	"genre":1
+}'):
+  
+app/controllers/books_controller.rb:49:in `book_params'
+app/controllers/books_controller.rb:18:in `create'
+Started POST "/books" for ::1 at 2021-07-22 23:51:03 -0300
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	"title":"Livro de Poesia",
+	"pages":32,
+	"grade":9,
+	"read":true,
+	"publishing_company":["id":1],
+	"author":["id":1],
+	"genre":["id":1]
+}
+Processing by BooksController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 123)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (434: unexpected token at ':1],
+	"author":["id":1],
+	"genre":["id":1]
+}'):
+  
+app/controllers/books_controller.rb:49:in `book_params'
+app/controllers/books_controller.rb:18:in `create'
+Started POST "/books" for ::1 at 2021-07-22 23:51:34 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company"=>[{"id"=>1}], "author"=>[{"id"=>1}], "genre"=>[{"id"=>1}], "book"=>{"pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true}}
+Completed 422 Unprocessable Entity in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 1261)
+
+
+Started POST "/books" for ::1 at 2021-07-22 23:52:14 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company"=>[{"name"=>"Brasil"}], "author"=>[{"name"=>"Vinicius de Morais"}], "genre"=>[{"name"=>"Masculino"}], "book"=>{"pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true}}
+Completed 422 Unprocessable Entity in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 1261)
+
+
+Started POST "/books" for ::1 at 2021-07-22 23:52:38 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company"=>[{"id"=>1, "name"=>"Brasil"}], "author"=>[{"id"=>1, "name"=>"Vinicius de Morais"}], "genre"=>[{"id"=>1, "name"=>"Masculino"}], "book"=>{"pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true}}
+Completed 422 Unprocessable Entity in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 1267)
+
+
+Started POST "/books" for ::1 at 2021-07-22 23:52:39 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company"=>[{"id"=>1, "name"=>"Brasil"}], "author"=>[{"id"=>1, "name"=>"Vinicius de Morais"}], "genre"=>[{"id"=>1, "name"=>"Masculino"}], "book"=>{"pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true}}
+Completed 422 Unprocessable Entity in 3ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 1272)
+
+
+Started GET "/authors" for ::1 at 2021-07-22 23:52:57 -0300
+Processing by AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors"[0m
+  ↳ app/controllers/authors_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 914)
+
+
+Started GET "/genres" for ::1 at 2021-07-22 23:53:20 -0300
+Processing by GenresController#index as */*
+  Parameters: {"genre"=>{}}
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres"[0m
+  ↳ app/controllers/genres_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 938)
+
+
+Started GET "/publishing_companies" for ::1 at 2021-07-22 23:53:53 -0300
+Processing by PublishingCompaniesController#index as */*
+  Parameters: {"publishing_company"=>{}}
+  [1m[36mPublishingCompany Load (0.2ms)[0m  [1m[34mSELECT "publishing_companies".* FROM "publishing_companies"[0m
+  ↳ app/controllers/publishing_companies_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 940)
+
+
+Started GET "/books" for ::1 at 2021-07-22 23:54:09 -0300
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 846)
+
+
+Started POST "/books" for ::1 at 2021-07-22 23:54:59 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company"=>[{"id"=>1, "name"=>"Brasil", "created_at"=>"2021-07-23T02:47:56.912Z", "updated_at"=>"2021-07-23T02:47:56.912Z"}], "author"=>[{"id"=>1, "name"=>"Vinicius de Morais", "created_at"=>"2021-07-23T02:46:50.169Z", "updated_at"=>"2021-07-23T02:46:50.169Z"}], "genre"=>[{"id"=>1, "name"=>"Masculino", "created_at"=>"2021-07-23T02:47:29.818Z", "updated_at"=>"2021-07-23T02:47:29.818Z"}], "book"=>{"pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true}}
+Completed 422 Unprocessable Entity in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 1271)
+
+
+Started POST "/books" for ::1 at 2021-07-22 23:57:14 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company"=>[{"id"=>1, "name"=>"Brasil", "created_at"=>"2021-07-23T02:47:56.912Z", "updated_at"=>"2021-07-23T02:47:56.912Z"}], "author"=>[{"id"=>1, "name"=>"Vinicius de Morais", "created_at"=>"2021-07-23T02:46:50.169Z", "updated_at"=>"2021-07-23T02:46:50.169Z"}], "genre"=>[{"id"=>1, "name"=>"Masculino", "created_at"=>"2021-07-23T02:47:29.818Z", "updated_at"=>"2021-07-23T02:47:29.818Z"}], "book"=>{"pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true}}
+Completed 422 Unprocessable Entity in 15ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 8168)
+
+
+Started POST "/books" for ::1 at 2021-07-22 23:57:39 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company"=>1, "author"=>1, "genre"=>1, "book"=>{"pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true}}
+Completed 422 Unprocessable Entity in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 1246)
+
+
+Started POST "/books" for ::1 at 2021-07-22 23:57:52 -0300
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	"title":"Livro de Poesia",
+	"pages":32,
+	"grade":9,
+	"read":true,
+}
+Processing by BooksController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 120)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (783: unexpected token at '{
+	"title":"Livro de Poesia",
+	"pages":32,
+	"grade":9,
+	"read":true,
+}'):
+  
+app/controllers/books_controller.rb:49:in `book_params'
+app/controllers/books_controller.rb:18:in `create'
+Started POST "/books" for ::1 at 2021-07-22 23:57:56 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "book"=>{"pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true}}
+Completed 422 Unprocessable Entity in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 1243)
+
+
+Started POST "/books" for ::1 at 2021-07-22 23:58:40 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company_id"=>1, "author_id"=>1, "genre_id"=>1, "book"=>{"pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true, "publishing_company_id"=>1, "author_id"=>1, "genre_id"=>1}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/books_controller.rb:20:in `create'
+  [1m[36mPublishingCompany Load (0.1ms)[0m  [1m[34mSELECT "publishing_companies".* FROM "publishing_companies" WHERE "publishing_companies"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:20:in `create'
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:20:in `create'
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:20:in `create'
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("pages", "grade", "title", "read", "publishing_company_id", "author_id", "genre_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["pages", 32], ["grade", 9], ["title", "Livro de Poesia"], ["read", 1], ["publishing_company_id", 1], ["author_id", 1], ["genre_id", 1], ["created_at", "2021-07-23 02:58:40.029542"], ["updated_at", "2021-07-23 02:58:40.029542"]]
+  ↳ app/controllers/books_controller.rb:20:in `create'
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/books_controller.rb:20:in `create'
+Completed 201 Created in 33ms (Views: 0.4ms | ActiveRecord: 5.8ms | Allocations: 16961)
+
+
+Started GET "/books" for ::1 at 2021-07-22 23:58:44 -0300
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.3ms | Allocations: 994)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBooks (20210723031130)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "genre" varchar, "author" varchar, "pages" integer, "grade" integer, "title" varchar, "read" boolean, "publishing_company_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_6c9827a2a6"
+FOREIGN KEY ("publishing_company_id")
+  REFERENCES "publishing_companies" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePublishingCompanies (20210723024412)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "publishing_companies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723024412"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBooks (20210723031130)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "genre" varchar, "author" varchar, "pages" integer, "grade" integer, "title" varchar, "read" boolean, "publishing_company_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_6c9827a2a6"
+FOREIGN KEY ("publishing_company_id")
+  REFERENCES "publishing_companies" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_books_on_publishing_company_id" ON "books" ("publishing_company_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723031130"]]
+  [1m[35m (4.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/publishing_companies" for ::1 at 2021-07-23 00:13:15 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PublishingCompaniesController#create as */*
+  Parameters: {"name"=>"Brasil", "publishing_company"=>{"name"=>"Brasil"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/publishing_companies_controller.rb:20:in `create'
+  [1m[36mPublishingCompany Create (0.4ms)[0m  [1m[32mINSERT INTO "publishing_companies" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Brasil"], ["created_at", "2021-07-23 03:13:15.592795"], ["updated_at", "2021-07-23 03:13:15.592795"]]
+  ↳ app/controllers/publishing_companies_controller.rb:20:in `create'
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/publishing_companies_controller.rb:20:in `create'
+Completed 201 Created in 18ms (Views: 0.9ms | ActiveRecord: 7.3ms | Allocations: 6418)
+
+
+Started GET "/publishing_companies" for ::1 at 2021-07-23 00:13:19 -0300
+Processing by PublishingCompaniesController#index as */*
+  Parameters: {"publishing_company"=>{}}
+  [1m[36mPublishingCompany Load (0.2ms)[0m  [1m[34mSELECT "publishing_companies".* FROM "publishing_companies"[0m
+  ↳ app/controllers/publishing_companies_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.2ms | Allocations: 970)
+
+
+Started POST "/books" for ::1 at 2021-07-23 00:15:10 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company_id"=>1, "author"=>"Vinicius de Morais", "genre"=>"Poesia", "book"=>{"genre"=>"Poesia", "author"=>"Vinicius de Morais", "pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true, "publishing_company_id"=>1}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/books_controller.rb:20:in `create'
+  [1m[36mPublishingCompany Load (0.2ms)[0m  [1m[34mSELECT "publishing_companies".* FROM "publishing_companies" WHERE "publishing_companies"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:20:in `create'
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("genre", "author", "pages", "grade", "title", "read", "publishing_company_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["genre", "Poesia"], ["author", "Vinicius de Morais"], ["pages", 32], ["grade", 9], ["title", "Livro de Poesia"], ["read", 1], ["publishing_company_id", 1], ["created_at", "2021-07-23 03:15:10.406828"], ["updated_at", "2021-07-23 03:15:10.406828"]]
+  ↳ app/controllers/books_controller.rb:20:in `create'
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/books_controller.rb:20:in `create'
+Completed 201 Created in 49ms (Views: 0.5ms | ActiveRecord: 5.6ms | Allocations: 12453)
+
+
+Started GET "/books" for ::1 at 2021-07-23 00:15:13 -0300
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.2ms | Allocations: 1021)
+
+
+Started GET "/books" for ::1 at 2021-07-23 00:18:34 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.6ms | Allocations: 5742)
+
+
+Started GET "/books/search" for ::1 at 2021-07-23 00:18:54 -0300
+Processing by BooksController#show as */*
+  Parameters: {"id"=>"search", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:53:in `set_book'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 737)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Book with 'id'=search):
+  
+app/controllers/books_controller.rb:53:in `set_book'
+Started GET "/search" for ::1 at 2021-07-23 00:19:00 -0300
+Processing by BooksController#search as JSON
+  Parameters: {"book"=>{}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 95)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/books_controller.rb:41:in `search'
+Started GET "/search" for ::1 at 2021-07-23 00:19:09 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BooksController#search as JSON
+  Parameters: {"book"=>{}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.3ms | Allocations: 158)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/books_controller.rb:41:in `search'
+Started GET "/books/search" for ::1 at 2021-07-23 00:19:17 -0300
+Processing by BooksController#show as */*
+  Parameters: {"id"=>"search", "book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:53:in `set_book'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.6ms | Allocations: 1232)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Book with 'id'=search):
+  
+app/controllers/books_controller.rb:53:in `set_book'
+Started GET "/search" for ::1 at 2021-07-23 00:19:35 -0300
+Processing by BooksController#search as JSON
+  Parameters: {"book"=>{}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 96)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/books_controller.rb:41:in `search'
+Started GET "/search" for ::1 at 2021-07-23 00:19:54 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#search as JSON
+  Parameters: {"book"=>{}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.4ms | Allocations: 130)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/books_controller.rb:41:in `search'
+Started GET "/search" for ::1 at 2021-07-23 00:19:56 -0300
+Processing by BooksController#search as JSON
+  Parameters: {"book"=>{}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 96)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/books_controller.rb:41:in `search'
+Started GET "/search" for ::1 at 2021-07-23 00:20:01 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BooksController#search as JSON
+  Parameters: {"book"=>{}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.3ms | Allocations: 158)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/books_controller.rb:41:in `search'
+Started GET "/books?search=Vinicius" for ::1 at 2021-07-23 00:22:04 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"Vinicius", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.9ms | Allocations: 6215)
+
+
+Started GET "/books?search=Vinic" for ::1 at 2021-07-23 00:22:08 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"Vinic", "book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 982)
+
+
+Started GET "/books?search=Po" for ::1 at 2021-07-23 00:22:12 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"Po", "book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 982)
+
+
+Started GET "/books?search=Livro" for ::1 at 2021-07-23 00:22:18 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"Livro", "book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 982)
+
+
+Started GET "/books?search=Marcos" for ::1 at 2021-07-23 00:22:23 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"Marcos", "book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 966)
+
+
+Started GET "/books?search=" for ::1 at 2021-07-23 00:22:27 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"", "book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 966)
+
+
+Started GET "/books?search=" for ::1 at 2021-07-23 00:22:39 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"", "book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 10ms (Views: 9.6ms | ActiveRecord: 0.7ms | Allocations: 5716)
+
+
+Started GET "/books?search=VInicius" for ::1 at 2021-07-23 00:23:01 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"VInicius", "book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 966)
+
+
+Started GET "/books" for ::1 at 2021-07-23 00:25:13 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 143)
+
+
+Started GET "/books" for ::1 at 2021-07-23 00:25:18 -0300
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 101)
+
+
+Started GET "/books" for ::1 at 2021-07-23 00:25:49 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/books_controller.rb:11:in `index'
+Completed 200 OK in 9ms (Views: 8.4ms | ActiveRecord: 0.7ms | Allocations: 5732)
+
+
+Started GET "/books?search=Vinicius" for ::1 at 2021-07-23 00:26:05 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"Vinicius", "book"=>{}}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (upper(title) LIKE '%VINICIUS%' OR upper(genre) LIKE '%VINICIUS%' OR upper(author) LIKE '%VINICIUS%')[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.3ms | Allocations: 1081)
+
+
+Started GET "/books?search=1" for ::1 at 2021-07-23 00:26:09 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"1", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (upper(title) LIKE '%1%' OR upper(genre) LIKE '%1%' OR upper(author) LIKE '%1%')[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.2ms | Allocations: 893)
+
+
+Started GET "/books?search=2" for ::1 at 2021-07-23 00:26:13 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"2", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (upper(title) LIKE '%2%' OR upper(genre) LIKE '%2%' OR upper(author) LIKE '%2%')[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 892)
+
+
+Started GET "/books?search=V" for ::1 at 2021-07-23 00:26:16 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"V", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (upper(title) LIKE '%V%' OR upper(genre) LIKE '%V%' OR upper(author) LIKE '%V%')[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.2ms | Allocations: 1061)
+
+
+Started GET "/books?search=Liv" for ::1 at 2021-07-23 00:26:20 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"Liv", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (upper(title) LIKE '%LIV%' OR upper(genre) LIKE '%LIV%' OR upper(author) LIKE '%LIV%')[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.2ms | Allocations: 1061)
+
+
+Started GET "/books?search=Livw" for ::1 at 2021-07-23 00:26:21 -0300
+Processing by BooksController#index as */*
+  Parameters: {"search"=>"Livw", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (upper(title) LIKE '%LIVW%' OR upper(genre) LIKE '%LIVW%' OR upper(author) LIKE '%LIVW%')[0m
+  ↳ app/controllers/books_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 892)
+
+
+Started GET "/books?term=V" for ::1 at 2021-07-23 00:39:01 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#index as */*
+  Parameters: {"term"=>"V", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Book Load (0.0ms)[0m  [1m[34mSELECT "books".* FROM "books" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms | Allocations: 9377)
+
+
+  [1m[36mCACHE Book Load (0.0ms)[0m  [1m[34mSELECT "books".* FROM "books" LIMIT ?[0m  [["LIMIT", 11]]
+  
+NameError (undefined local variable or method `params' for #<Book::ActiveRecord_Relation:0x00007f5b94026510>):
+  
+app/models/book.rb:4:in `block in <class:Book>'
+app/controllers/books_controller.rb:6:in `index'
+  [1m[36mCACHE Book Load (0.0ms)[0m  [1m[34mSELECT "books".* FROM "books" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/books?term=V" for ::1 at 2021-07-23 00:40:30 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#index as */*
+  Parameters: {"term"=>"V", "book"=>{}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.4ms | Allocations: 228)
+
+
+  
+ActiveRecord::PreparedStatementInvalid (wrong number of bind variables (1 for 3) in: upper(title) LIKE ? OR upper(genre) LIKE ? OR upper(author) LIKE ?):
+  
+app/models/book.rb:4:in `block in <class:Book>'
+app/controllers/books_controller.rb:6:in `index'
+Started GET "/books?term=V" for ::1 at 2021-07-23 00:41:57 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#index as */*
+  Parameters: {"term"=>"V", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (upper(title) LIKE '%V%' OR upper(genre) LIKE '%V%' OR upper(author) LIKE '%V%')[0m
+  ↳ app/controllers/books_controller.rb:7:in `index'
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.8ms | Allocations: 5865)
+
+
+Started GET "/books?term=V" for ::1 at 2021-07-23 00:53:28 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+SyntaxError (/home/vino/Projetos/BookCollection/app/controllers/concerns/authenticable.rb:5: syntax error, unexpected '='
+        @token ||== request.headers['Authorizati...
+                  ^
+):
+  
+app/controllers/concerns/authenticable.rb:5: syntax error, unexpected '='
+app/controllers/concerns/authenticable.rb:5: syntax error, unexpected '='
+app/controllers/books_controller.rb:2:in `<class:BooksController>'
+app/controllers/books_controller.rb:1:in `<main>'
+Started GET "/books?term=V" for ::1 at 2021-07-23 00:53:45 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#index as */*
+  Parameters: {"term"=>"V", "book"=>{}}
+Filter chain halted as :authenticate_with_token rendered or redirected
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 159)
+
+
+Started GET "/books?term=V" for ::1 at 2021-07-23 00:54:07 -0300
+Processing by BooksController#index as */*
+  Parameters: {"term"=>"V", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (upper(title) LIKE '%V%' OR upper(genre) LIKE '%V%' OR upper(author) LIKE '%V%')[0m
+  ↳ app/controllers/books_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.5ms | Allocations: 5833)
+
+
+Started GET "/books?term=V" for ::1 at 2021-07-23 01:02:08 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#index as */*
+  Parameters: {"term"=>"V", "book"=>{}}
+Filter chain halted as :authenticate_with_token rendered or redirected
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 322)
+
+
+Started GET "/books?term=V" for ::1 at 2021-07-23 01:02:16 -0300
+Processing by BooksController#index as */*
+  Parameters: {"term"=>"V", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (upper(title) LIKE '%V%' OR upper(genre) LIKE '%V%' OR upper(author) LIKE '%V%')[0m
+  ↳ app/controllers/books_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 8.5ms | ActiveRecord: 0.2ms | Allocations: 5678)
+
+
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mBook Destroy (5.7ms)[0m  [1m[31mDELETE FROM "books"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddTokenToBooks (20210723040923)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "abooks" ("id" integer NOT NULL PRIMARY KEY, "genre" varchar DEFAULT NULL, "author" varchar DEFAULT NULL, "pages" integer DEFAULT NULL, "grade" integer DEFAULT NULL, "title" varchar DEFAULT NULL, "read" boolean DEFAULT NULL, "publishing_company_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_abooks_on_publishing_company_id" ON "abooks" ("publishing_company_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "abooks" ("id","genre","author","pages","grade","title","read","publishing_company_id","created_at","updated_at")
+                     SELECT "id","genre","author","pages","grade","title","read","publishing_company_id","created_at","updated_at" FROM "books"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "books"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer NOT NULL PRIMARY KEY, "genre" varchar DEFAULT NULL, "author" varchar DEFAULT NULL, "pages" integer DEFAULT NULL, "grade" integer DEFAULT NULL, "title" varchar DEFAULT NULL, "read" boolean DEFAULT NULL, "publishing_company_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "token" varchar NOT NULL, CONSTRAINT "fk_rails_6c9827a2a6"
+FOREIGN KEY ("publishing_company_id")
+  REFERENCES "publishing_companies" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_books_on_publishing_company_id" ON "books" ("publishing_company_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "books" ("id","genre","author","pages","grade","title","read","publishing_company_id","created_at","updated_at")
+                     SELECT "id","genre","author","pages","grade","title","read","publishing_company_id","created_at","updated_at" FROM "abooks"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "abooks"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_books_on_token" ON "books" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723040923"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/books?term=V" for ::1 at 2021-07-23 01:23:07 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BooksController#index as */*
+  Parameters: {"term"=>"V", "book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."token" = ? AND (upper(title) LIKE '%V%' OR upper(genre) LIKE '%V%' OR upper(author) LIKE '%V%')[0m  [["token", "3b05161529ed896e404a4c26184f00d597d357a3c5f73e52742e221ae75bb1e06cd4fb4e18f7f0b4c23250872a751704c78b48fe3583f3c23db71e54c581f8e8"]]
+  ↳ app/controllers/books_controller.rb:9:in `index'
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.2ms | Allocations: 1364)
+
+
+Started POST "/books?term=V" for ::1 at 2021-07-23 01:23:16 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company_id"=>1, "author"=>"Vinicius de Morais", "genre"=>"Poesia", "term"=>"V", "book"=>{"genre"=>"Poesia", "author"=>"Vinicius de Morais", "pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true, "publishing_company_id"=>1}}
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.0ms | Allocations: 4909)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'token' for Book.):
+  
+app/controllers/books_controller.rb:19:in `create'
+Started POST "/books" for ::1 at 2021-07-23 01:23:32 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company_id"=>1, "author"=>"Vinicius de Morais", "genre"=>"Poesia", "book"=>{"genre"=>"Poesia", "author"=>"Vinicius de Morais", "pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true, "publishing_company_id"=>1}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 321)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'token' for Book.):
+  
+app/controllers/books_controller.rb:19:in `create'
+Started POST "/books" for ::1 at 2021-07-23 01:24:43 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company_id"=>1, "author"=>"Vinicius de Morais", "genre"=>"Poesia", "book"=>{"genre"=>"Poesia", "author"=>"Vinicius de Morais", "pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true, "publishing_company_id"=>1}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 321)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'token' for Book.):
+  
+app/controllers/books_controller.rb:19:in `create'
+Started POST "/books" for ::1 at 2021-07-23 01:24:49 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company_id"=>1, "author"=>"Vinicius de Morais", "genre"=>"Poesia", "book"=>{"genre"=>"Poesia", "author"=>"Vinicius de Morais", "pages"=>32, "grade"=>9, "title"=>"Livro de Poesia", "read"=>true, "publishing_company_id"=>1}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/books_controller.rb:21:in `create'
+  [1m[36mPublishingCompany Load (0.2ms)[0m  [1m[34mSELECT "publishing_companies".* FROM "publishing_companies" WHERE "publishing_companies"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:21:in `create'
+  [1m[36mBook Create (0.5ms)[0m  [1m[32mINSERT INTO "books" ("genre", "author", "pages", "grade", "title", "read", "publishing_company_id", "created_at", "updated_at", "token") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["genre", "Poesia"], ["author", "Vinicius de Morais"], ["pages", 32], ["grade", 9], ["title", "Livro de Poesia"], ["read", 1], ["publishing_company_id", 1], ["created_at", "2021-07-23 04:24:49.313798"], ["updated_at", "2021-07-23 04:24:49.313798"], ["token", "3b05161529ed896e404a4c26184f00d5"]]
+  ↳ app/controllers/books_controller.rb:21:in `create'
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/books_controller.rb:21:in `create'
+Completed 201 Created in 55ms (Views: 2.4ms | ActiveRecord: 7.5ms | Allocations: 15560)
+
+
+Started GET "/books" for ::1 at 2021-07-23 01:24:54 -0300
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."token" = ?[0m  [["token", "3b05161529ed896e404a4c26184f00d5"]]
+  ↳ app/controllers/books_controller.rb:9:in `index'
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.2ms | Allocations: 1248)
+
+
+Started GET "/books" for ::1 at 2021-07-23 01:25:37 -0300
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."token" = ?[0m  [["token", "3b05161529ed896e404a4c26184f00d56"]]
+  ↳ app/controllers/books_controller.rb:9:in `index'
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.1ms | Allocations: 952)
+
+
+Started GET "/books" for ::1 at 2021-07-23 01:25:41 -0300
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."token" = ?[0m  [["token", "3b05161529ed896e404a4c26184f00d5"]]
+  ↳ app/controllers/books_controller.rb:9:in `index'
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.1ms | Allocations: 1133)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210723044816)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723044816"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddPasswordDigestToUsers (20210723044927)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723044927"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddTokenToUsers (20210723045056)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "email" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "password_digest" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "ausers" ("id","name","email","created_at","updated_at","password_digest")
+                     SELECT "id","name","email","created_at","updated_at","password_digest" FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "email" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "password_digest" varchar DEFAULT NULL, "token" varchar NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "users" ("id","name","email","created_at","updated_at","password_digest")
+                     SELECT "id","name","email","created_at","updated_at","password_digest" FROM "ausers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "ausers"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723045056"]]
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/books" for ::1 at 2021-07-23 02:46:32 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."token" = ?[0m  [["token", "3b05161529ed896e404a4c26184f00d5"]]
+  ↳ app/controllers/books_controller.rb:9:in `index'
+Completed 200 OK in 15ms (Views: 13.2ms | ActiveRecord: 0.9ms | Allocations: 7210)
+
+
+Started GET "/books" for ::1 at 2021-07-23 02:46:34 -0300
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."token" = ?[0m  [["token", "3b05161529ed896e404a4c26184f00d5"]]
+  ↳ app/controllers/books_controller.rb:9:in `index'
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.1ms | Allocations: 1135)
+
+
+Started DELETE "/main" for ::1 at 2021-07-23 02:47:02 -0300
+  
+ActionController::RoutingError (No route matches [DELETE] "/main"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started DELETE "/main" for ::1 at 2021-07-23 02:47:35 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [DELETE] "/main"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started DELETE "/main" for ::1 at 2021-07-23 02:47:55 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [DELETE] "/main"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started DELETE "/main" for ::1 at 2021-07-23 02:48:26 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (uninitialized constant Main
+Did you mean?  Mail):
+  
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started DELETE "/sing_out" for ::1 at 2021-07-23 02:49:09 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (uninitialized constant Main
+Did you mean?  Mail):
+  
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started DELETE "/sing_out" for ::1 at 2021-07-23 02:49:22 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant Main
+Did you mean?  Mail):
+  
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/users" for ::1 at 2021-07-23 02:50:41 -0300
+  
+SyntaxError (/home/vino/Projetos/BookCollection/app/models/user.rb:4: syntax error, unexpected local variable or method, expecting '}'
+        message: "Senha com um mínimo de 6 ...
+        ^~~~~~~
+/home/vino/Projetos/BookCollection/app/models/user.rb:4: syntax error, unexpected '}', expecting `end'
+...racter especial (! ? # ou *)" }
+...                              ^
+):
+  
+app/models/user.rb:4: syntax error, unexpected local variable or method, expecting '}'
+app/models/user.rb:4: syntax error, unexpected '}', expecting `end'
+app/models/user.rb:4: syntax error, unexpected local variable or method, expecting '}'
+app/models/user.rb:4: syntax error, unexpected '}', expecting `end'
+Started POST "/users" for ::1 at 2021-07-23 02:51:02 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vino", "email"=>"viniciusrdefreitas@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vino", "email"=>"viniciusrdefreitas@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 1.2ms | Allocations: 9997)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x00007f75a817e3f8>
+Did you mean?  password_digest):
+  
+app/controllers/users_controller.rb:23:in `create'
+Started POST "/users" for ::1 at 2021-07-23 02:51:49 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vino", "email"=>"viniciusrdefreitas@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vino", "email"=>"viniciusrdefreitas@gmail.com"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.2ms | Allocations: 5809)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x00007f75a821c4e0>
+Did you mean?  password_digest):
+  
+app/controllers/users_controller.rb:23:in `create'
+Started POST "/users" for ::1 at 2021-07-23 02:51:58 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vino", "email"=>"viniciusrdefreitas@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vino", "email"=>"viniciusrdefreitas@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.3ms | Allocations: 5808)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x0000556b104a1ae8>
+Did you mean?  password_digest):
+  
+app/controllers/users_controller.rb:23:in `create'
+Started POST "/users" for ::1 at 2021-07-23 02:52:16 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Vino", "email"=>"viniciusrdefreitas@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Vino", "email"=>"viniciusrdefreitas@gmail.com"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "viniciusrdefreitas@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "token") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Vino"], ["email", "viniciusrdefreitas@gmail.com"], ["created_at", "2021-07-23 05:52:16.316509"], ["updated_at", "2021-07-23 05:52:16.316509"], ["token", "6f5eed460134d134e0ffa93e1fc4f6f2"]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 201 Created in 17ms (Views: 0.7ms | ActiveRecord: 5.5ms | Allocations: 9166)
+
+
+Started GET "/books" for ::1 at 2021-07-23 02:53:22 -0300
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."token" = ?[0m  [["token", "3b05161529ed896e404a4c26184f00d5"]]
+  ↳ app/controllers/books_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.7ms | Allocations: 6639)
+
+
+Started POST "/books" for ::1 at 2021-07-23 02:54:03 -0300
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia 2", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company_id"=>1, "author"=>"Vinicius de Morais", "genre"=>"Poesia", "book"=>{"genre"=>"Poesia", "author"=>"Vinicius de Morais", "pages"=>32, "grade"=>9, "title"=>"Livro de Poesia 2", "read"=>true, "publishing_company_id"=>1}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 735)
+
+
+  
+NoMethodError (undefined method `token' for nil:NilClass):
+  
+app/controllers/books_controller.rb:19:in `create'
+Started POST "/books" for ::1 at 2021-07-23 02:54:08 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BooksController#create as */*
+  Parameters: {"title"=>"Livro de Poesia 2", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company_id"=>1, "author"=>"Vinicius de Morais", "genre"=>"Poesia", "book"=>{"genre"=>"Poesia", "author"=>"Vinicius de Morais", "pages"=>32, "grade"=>9, "title"=>"Livro de Poesia 2", "read"=>true, "publishing_company_id"=>1}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/books_controller.rb:21:in `create'
+  [1m[36mPublishingCompany Load (0.1ms)[0m  [1m[34mSELECT "publishing_companies".* FROM "publishing_companies" WHERE "publishing_companies"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:21:in `create'
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("genre", "author", "pages", "grade", "title", "read", "publishing_company_id", "created_at", "updated_at", "token") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["genre", "Poesia"], ["author", "Vinicius de Morais"], ["pages", 32], ["grade", 9], ["title", "Livro de Poesia 2"], ["read", 1], ["publishing_company_id", 1], ["created_at", "2021-07-23 05:54:08.058390"], ["updated_at", "2021-07-23 05:54:08.058390"], ["token", "3b05161529ed896e404a4c26184f00d5"]]
+  ↳ app/controllers/books_controller.rb:21:in `create'
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/books_controller.rb:21:in `create'
+Completed 201 Created in 25ms (Views: 0.6ms | ActiveRecord: 5.8ms | Allocations: 15498)
+
+
+Started GET "/books" for ::1 at 2021-07-23 02:54:11 -0300
+Processing by BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."token" = ?[0m  [["token", "3b05161529ed896e404a4c26184f00d5"]]
+  ↳ app/controllers/books_controller.rb:9:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.2ms | Allocations: 1367)
+
+
+Started POST "/users" for ::1 at 2021-07-23 02:54:59 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"title"=>"Livro de Poesia 2", "pages"=>32, "grade"=>9, "read"=>true, "publishing_company_id"=>1, "author"=>"Vinicius de Morais", "genre"=>"Poesia", "user"=>{}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.4ms | Allocations: 189)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:53:in `user_params'
+app/controllers/users_controller.rb:20:in `create'
+Started GET "/sing_in" for ::1 at 2021-07-23 02:56:13 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/sing_in"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/sing_in" for ::1 at 2021-07-23 02:56:30 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/sing_in"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/sing_in" for ::1 at 2021-07-23 02:56:46 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (uninitialized constant Main
+Did you mean?  Mail):
+  
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/sing_in" for ::1 at 2021-07-23 02:58:05 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (uninitialized constant Main
+Did you mean?  Mail):
+  
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/sing_in" for ::1 at 2021-07-23 02:58:06 -0300
+  
+ActionController::RoutingError (uninitialized constant Main
+Did you mean?  Mail):
+  
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/sing_in" for ::1 at 2021-07-23 02:58:12 -0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant Main
+Did you mean?  Mail):
+  
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
